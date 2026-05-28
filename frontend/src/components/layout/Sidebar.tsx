@@ -36,38 +36,43 @@ export function Sidebar() {
   const { sidebarCollapsed, toggleSidebar } = useUIStore();
   const { activeProject } = useProjectStore();
 
+  // Extract project ID from URL pathname if activeProject is still loading/hydrating
+  const pathSegments = pathname.split('/').filter(Boolean);
+  const pathProjectId = pathSegments[0] === 'projects' && pathSegments[1] && pathSegments[1] !== 'new' ? pathSegments[1] : null;
+  const currentProjectId = activeProject?.id || pathProjectId;
+
   // Define navigation items
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Projects', href: '/projects', icon: FolderKanban },
     { 
       name: 'Schedule / Gantt', 
-      href: activeProject ? `/projects/${activeProject.id}/schedule` : '/schedule', 
+      href: currentProjectId ? `/projects/${currentProjectId}/schedule` : '/projects', 
       icon: Calendar 
     },
     { 
       name: 'Resources', 
-      href: activeProject ? `/projects/${activeProject.id}/resources` : '/resources', 
+      href: currentProjectId ? `/projects/${currentProjectId}/resources` : '/projects', 
       icon: Users 
     },
     { 
       name: 'BOQ Analysis', 
-      href: activeProject ? `/projects/${activeProject.id}/boq` : '/boq', 
+      href: currentProjectId ? `/projects/${currentProjectId}/boq` : '/projects', 
       icon: FileSpreadsheet 
     },
     { 
       name: 'Delay Analysis', 
-      href: activeProject ? `/projects/${activeProject.id}/analysis` : '/analysis', 
+      href: currentProjectId ? `/projects/${currentProjectId}/analysis` : '/projects', 
       icon: ShieldAlert 
     },
     { 
       name: 'Reports', 
-      href: activeProject ? `/projects/${activeProject.id}/reports` : '/reports', 
+      href: currentProjectId ? `/projects/${currentProjectId}/reports` : '/projects', 
       icon: FileText 
     },
     { 
       name: 'Cost Controls', 
-      href: activeProject ? `/projects/${activeProject.id}/costs` : '/costs', 
+      href: currentProjectId ? `/projects/${currentProjectId}/costs` : '/projects', 
       icon: DollarSign 
     },
   ];
