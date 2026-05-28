@@ -15,11 +15,25 @@ const isPublicRoute = createRouteMatcher([
   '/api/webhook(.*)',
 ]);
 
-export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    await auth.protect();
-  }
-});
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+let middlewareHandler;
+
+if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY) {
+  middlewareHandler = clerkMiddleware(async (auth, request) => {
+    if (!isPublicRoute(request)) {
+      await auth.protect();
+    }
+  });
+} else {
+  // No-op fallback when Clerk keys are not configured yet on Vercel/Local
+  middlewareHandler = () => {
+    return NextResponse.next();
+  };
+}
+
+export default middlewareHandler;
 
 export const config = {
   matcher: [
