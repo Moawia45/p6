@@ -115,7 +115,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Search Input bar */}
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <Input
           placeholder="Filter projects by title, code, or location..."
           value={searchQuery}
@@ -126,7 +126,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
         {filteredProjects.map((p, idx) => (
           <motion.div
             key={p.id}
@@ -135,10 +135,10 @@ export default function ProjectsPage() {
             transition={{ duration: 0.3, delay: idx * 0.05 }}
           >
             <Card hoverGlow className="h-full border-white/5 flex flex-col justify-between overflow-hidden">
-              <CardContent className="p-6 space-y-5 text-left flex-1 flex flex-col justify-between">
+              <CardContent className="p-6 text-left flex-1 flex flex-col justify-between">
                 <div className="space-y-4">
                   {/* Top line: Code & status badge */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] font-mono font-black text-primary tracking-widest leading-none bg-primary/10 border border-primary/20 rounded-md px-2 py-1">
                       {p.code || 'CM-PROJ'}
                     </span>

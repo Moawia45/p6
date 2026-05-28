@@ -67,7 +67,7 @@ export function Navbar() {
       </div>
 
       {/* Right: Quick actions */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center gap-4">
         {/* Search / Command Palette Toggle */}
         <button
           onClick={toggleCommandPalette}
@@ -104,7 +104,7 @@ export function Navbar() {
         </button>
 
         {/* User Account Menu (Clerk) */}
-        <div className="pl-1 border-l border-white/5 h-8 flex items-center justify-center">
+        <div className="pl-3 border-l border-white/10 h-8 flex items-center justify-center">
           {isSignedIn ? (
             <UserButton 
               appearance={{
