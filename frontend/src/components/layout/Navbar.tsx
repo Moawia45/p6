@@ -7,7 +7,7 @@
 
 import * as React from 'react';
 import { usePathname } from 'next/navigation';
-import { UserButton, useUser, SignInButton } from '@clerk/nextjs';
+import { UserButton, useUser, SignInButton } from '@/lib/clerk-compat';
 import { Bell, Search, Sparkles, Menu } from 'lucide-react';
 import { useUIStore } from '@/store/ui-store';
 import { useProjectStore } from '@/store/project-store';

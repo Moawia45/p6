@@ -3,7 +3,7 @@
  * Created by Moawia Husnain | Civil Engineer | UET Taxila | +923266915744
  */
 
-import { SignIn } from '@clerk/nextjs';
+import { SignIn } from '@/lib/clerk-compat';
 
 export default function SignInPage() {
   return (

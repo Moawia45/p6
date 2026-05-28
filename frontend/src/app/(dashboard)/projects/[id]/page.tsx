@@ -93,7 +93,7 @@ export default function ProjectDetailPage() {
                 {activeProject.status}
               </Badge>
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-none">
+            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">
               {activeProject.name}
             </h1>
             <p className="text-xs text-zinc-400 font-medium">

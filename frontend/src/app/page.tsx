@@ -110,7 +110,7 @@ export default function LandingPage() {
           {/* Headline */}
           <motion.h1 
             variants={itemVariants} 
-            className="text-4xl md:text-6xl font-black tracking-tight leading-[1.08] text-white"
+            className="text-4xl md:text-6xl font-black tracking-tight leading-tight text-white"
           >
             Construction Intelligence, <br className="hidden md:inline"/>
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -152,7 +152,7 @@ export default function LandingPage() {
             <Badge variant="info" className="uppercase tracking-widest text-[9px] font-bold rounded-full py-1 px-3">
               Power Modules
             </Badge>
-            <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-none">
+            <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">
               Everything You Need to Control Your Project
             </h2>
             <p className="text-sm text-zinc-400 font-medium">
