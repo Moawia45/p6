@@ -2,38 +2,16 @@
  * ConstructMind AI - Middleware
  * Created by Moawia Husnain | Civil Engineer | UET Taxila | +923266915744
  * 
- * Clerk authentication middleware for route protection.
+ * Pass-through middleware (temporarily bypassing Clerk authentication
+ * to prevent 500 errors on Vercel when keys are not configured yet).
  */
-
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-// Define public routes that don't require authentication
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhook(.*)',
-]);
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-let middlewareHandler;
-
-if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY) {
-  middlewareHandler = clerkMiddleware(async (auth, request) => {
-    if (!isPublicRoute(request)) {
-      await auth.protect();
-    }
-  });
-} else {
-  // No-op fallback when Clerk keys are not configured yet on Vercel/Local
-  middlewareHandler = () => {
-    return NextResponse.next();
-  };
+export default function middleware(request: NextRequest) {
+  return NextResponse.next();
 }
-
-export default middlewareHandler;
 
 export const config = {
   matcher: [
