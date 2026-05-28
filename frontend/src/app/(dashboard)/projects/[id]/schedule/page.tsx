@@ -278,7 +278,8 @@ export default function SchedulePage() {
                       act.planned_start || act.early_start,
                       act.planned_finish || act.early_finish
                     );
-                    const isMilestone = act.activity_type.value === 'milestone' || act.activity_type === 'milestone';
+                    const isMilestone = act.activity_type === 'milestone' || 
+                                        (act.activity_type && typeof act.activity_type === 'object' && act.activity_type.value === 'milestone');
 
                     return (
                       <div 
