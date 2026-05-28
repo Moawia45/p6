@@ -28,7 +28,7 @@ import { Button } from '@/components/shared/Button';
 import { Badge } from '@/components/shared/Badge';
 import { Input } from '@/components/shared/Input';
 import { Modal } from '@/components/shared/Modal';
-import { formatCurrency, formatDate } from '@/lib/utils';
+import { cn, formatCurrency, formatDate } from '@/lib/utils';
 import { ACTIVITY_TYPES, RELATIONSHIP_TYPES } from '@/lib/constants';
 
 export default function SchedulePage() {

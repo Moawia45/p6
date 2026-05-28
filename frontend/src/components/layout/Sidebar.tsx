@@ -52,7 +52,7 @@ export function Sidebar() {
     },
     { 
       name: 'Resources', 
-      href: currentProjectId ? `/projects/${currentProjectId}/resources` : '/projects', 
+      href: currentProjectId ? `/projects/${currentProjectId}?tab=resources` : '/projects', 
       icon: Users 
     },
     { 
@@ -62,17 +62,17 @@ export function Sidebar() {
     },
     { 
       name: 'Delay Analysis', 
-      href: currentProjectId ? `/projects/${currentProjectId}/analysis` : '/projects', 
+      href: currentProjectId ? `/projects/${currentProjectId}?tab=analysis` : '/projects', 
       icon: ShieldAlert 
     },
     { 
       name: 'Reports', 
-      href: currentProjectId ? `/projects/${currentProjectId}/reports` : '/projects', 
+      href: currentProjectId ? `/projects/${currentProjectId}?tab=reports` : '/projects', 
       icon: FileText 
     },
     { 
       name: 'Cost Controls', 
-      href: currentProjectId ? `/projects/${currentProjectId}/costs` : '/projects', 
+      href: currentProjectId ? `/projects/${currentProjectId}?tab=costs` : '/projects', 
       icon: DollarSign 
     },
   ];
