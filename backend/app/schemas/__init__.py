@@ -1,0 +1,1 @@
+# ConstructMind AI - Pydantic Schemas

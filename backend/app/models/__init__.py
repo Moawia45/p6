@@ -1,0 +1,1 @@
+# ConstructMind AI - Database Models
