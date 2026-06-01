@@ -29,6 +29,9 @@
   --sidebar-width: 260px;
   --sidebar-collapsed-width: 72px;
   --navbar-height: 64px;
+  --surface: #0e0e1f;
+  --surface-2: #151528;
+  --primary-hover: #2563eb;
 }
 
 @theme inline {
@@ -55,6 +58,9 @@
   --color-glass-border: var(--glass-border);
   --font-sans: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-primary-hover: var(--primary-hover);
 }
 
 * {
@@ -123,6 +129,14 @@ body {
 
 .glow-accent {
   box-shadow: var(--glow-accent);
+}
+
+.glass-strong {
+  background: rgba(12, 12, 29, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Gradient text utility */

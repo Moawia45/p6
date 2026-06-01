@@ -20,7 +20,9 @@ import {
   ArrowRight,
   TrendingUp,
   FileText,
-  AlertTriangle
+  AlertTriangle,
+  Download,
+  FileDown
 } from 'lucide-react';
 import { useProjectStore } from '@/store/project-store';
 import { useScheduleStore } from '@/store/schedule-store';
@@ -29,7 +31,8 @@ import { Button } from '@/components/shared/Button';
 import { Badge } from '@/components/shared/Badge';
 import { ProgressBar } from '@/components/shared/ProgressBar';
 import { Tabs } from '@/components/shared/Tabs';
-import { formatCurrency, formatDate } from '@/lib/utils';
+import { cn, formatCurrency, formatDate } from '@/lib/utils';
+import { API_BASE_URL } from '@/lib/constants';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -68,6 +71,7 @@ export default function ProjectDetailPage() {
     { id: 'resources', label: 'Resources' },
     { id: 'analysis', label: 'Delay Analysis' },
     { id: 'reports', label: 'Reports' },
+    { id: 'exports', label: 'Export / Download', icon: <Download className="h-4 w-4" /> },
   ];
 
   if (!activeProject) {
@@ -330,6 +334,52 @@ export default function ProjectDetailPage() {
                   </Button>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {activeTab === 'exports' && (
+        <Card className="border-white/5">
+          <CardHeader className="pb-3 text-left">
+            <CardTitle className="text-base font-bold">Export Project Data</CardTitle>
+            <CardDescription>Download professional Excel reports and Primavera P6 XER files</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6 text-xs text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { type: 'schedule', title: 'Schedule & Cost Report', desc: 'Activities with durations, dates, costs, float, and critical path analysis.', icon: Calendar, ext: '.xlsx' },
+                { type: 'boq', title: 'Bill of Quantities', desc: 'Full BOQ with CSI codes, quantities, rates, AI categorization.', icon: FileSpreadsheet, ext: '.xlsx' },
+                { type: 'resources', title: 'Resource Dictionary', desc: 'All project resources with rates, types, and utilization data.', icon: Users, ext: '.xlsx' },
+                { type: 'master', title: 'Master Report (All-in-One)', desc: 'Combined workbook with all sheets: Schedule, BOQ, Resources, Relationships.', icon: FileDown, ext: '.xlsx' },
+                { type: 'xer', title: 'Primavera P6 XER File', desc: 'Full P6-compatible XER export with tasks, predecessors, resources, calendars.', icon: FileText, ext: '.xer' },
+              ].map((item) => {
+                const Icon = item.icon;
+                const downloadUrl = item.type === 'xer'
+                  ? `${API_BASE_URL}/api/projects/${projectId}/export/xer`
+                  : `${API_BASE_URL}/api/projects/${projectId}/export/excel/${item.type}`;
+                return (
+                  <div key={item.type} className="p-5 rounded-2xl bg-surface-2/45 border border-white/5 hover:border-primary/20 transition-all flex flex-col justify-between items-start space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Icon className="h-6 w-6 text-primary" />
+                        <span className="text-[10px] font-mono font-bold text-zinc-500 bg-white/5 border border-white/10 rounded px-1.5 py-0.5">{item.ext}</span>
+                      </div>
+                      <h6 className="font-extrabold text-white text-sm">{item.title}</h6>
+                      <p className="text-[10px] text-zinc-500 leading-relaxed">{item.desc}</p>
+                    </div>
+                    <a
+                      href={downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-2 h-9 px-4 rounded-xl bg-primary/10 border border-primary/20 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all duration-200"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      <span>Download {item.ext.toUpperCase()}</span>
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </CardContent>
         </Card>

@@ -49,9 +49,9 @@ export function CommandPalette() {
     // Navigation
     { id: 'nav-dash', name: 'Go to Dashboard', category: 'Navigation', icon: Folder, action: () => { router.push('/dashboard'); setCommandPaletteOpen(false); } },
     { id: 'nav-proj', name: 'Go to Projects List', category: 'Navigation', icon: Folder, action: () => { router.push('/projects'); setCommandPaletteOpen(false); } },
-    { id: 'nav-sched', name: 'Go to Schedule / Gantt', category: 'Navigation', icon: Calendar, action: () => { router.push(activeProject ? `/projects/${activeProject.id}/schedule` : '/schedule'); setCommandPaletteOpen(false); } },
+    { id: 'nav-sched', name: 'Go to Schedule / Gantt', category: 'Navigation', icon: Calendar, action: () => { router.push(activeProject ? `/projects/${activeProject.id}/schedule` : '/projects'); setCommandPaletteOpen(false); } },
     { id: 'nav-res', name: 'Go to Resource Allocation', category: 'Navigation', icon: Users, action: () => { router.push(activeProject ? `/projects/${activeProject.id}?tab=resources` : '/projects'); setCommandPaletteOpen(false); } },
-    { id: 'nav-boq', name: 'Go to Bill of Quantities (BOQ)', category: 'Navigation', icon: FileText, action: () => { router.push(activeProject ? `/projects/${activeProject.id}/boq` : '/boq'); setCommandPaletteOpen(false); } },
+    { id: 'nav-boq', name: 'Go to Bill of Quantities (BOQ)', category: 'Navigation', icon: FileText, action: () => { router.push(activeProject ? `/projects/${activeProject.id}/boq` : '/projects'); setCommandPaletteOpen(false); } },
     
     // Quick Actions
     { id: 'act-cpm', name: 'Run Critical Path CPM Analysis', category: 'Quick Actions', icon: Play, shortcut: ['⌘', 'R'], action: () => { if (activeProject) { router.push(`/projects/${activeProject.id}/schedule?runCPM=true`); } else { router.push('/projects'); } setCommandPaletteOpen(false); } },

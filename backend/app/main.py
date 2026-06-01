@@ -19,7 +19,7 @@ from fastapi.responses import JSONResponse
 from app.config import settings
 from app.database import create_tables
 from app.schemas.project import HealthResponse
-from app.routers import projects, activities, boq, schedule, copilot, reports, resources
+from app.routers import projects, activities, boq, schedule, copilot, reports, resources, exports
 
 # Configure logging
 logging.basicConfig(
@@ -69,6 +69,7 @@ app.include_router(schedule.router, prefix="/api/projects/{project_id}/schedule"
 app.include_router(resources.router, prefix="/api/projects/{project_id}/resources", tags=["Resources"])
 app.include_router(reports.router, prefix="/api/projects/{project_id}/reports", tags=["Reports & Analytics"])
 app.include_router(copilot.router, prefix="/api/copilot", tags=["AI Copilot"])
+app.include_router(exports.router, prefix="/api/projects/{project_id}", tags=["Exports"])
 
 @app.get("/health", response_model=HealthResponse, tags=["System"])
 async def health_check() -> JSONResponse:

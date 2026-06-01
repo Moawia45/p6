@@ -13,17 +13,19 @@ export const CREATOR_INFO = {
   email: 'moawia.civil.uet@gmail.com', // placeholder
 };
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+export const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+  ? ''  // Use relative paths on deployed environments (Next.js rewrites handle proxying)
+  : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
 
 export const NAVIGATION_ITEMS = [
   { name: 'Dashboard', href: '/dashboard', icon: 'LayoutDashboard' },
   { name: 'Projects', href: '/projects', icon: 'FolderKanban' },
-  { name: 'Schedule / Gantt', href: '/schedule', icon: 'Calendar' },
-  { name: 'Resources', href: '/resources', icon: 'Users' },
-  { name: 'BOQ Analysis', href: '/boq', icon: 'FileSpreadsheet' },
-  { name: 'Delay Analysis', href: '/analysis', icon: 'ShieldAlert' },
-  { name: 'Reports', href: '/reports', icon: 'FileText' },
-  { name: 'Cost Controls', href: '/costs', icon: 'DollarSign' },
+  { name: 'Schedule / Gantt', href: '/projects', icon: 'Calendar' },
+  { name: 'Resources', href: '/projects', icon: 'Users' },
+  { name: 'BOQ Analysis', href: '/projects', icon: 'FileSpreadsheet' },
+  { name: 'Delay Analysis', href: '/projects', icon: 'ShieldAlert' },
+  { name: 'Reports', href: '/projects', icon: 'FileText' },
+  { name: 'Cost Controls', href: '/projects', icon: 'DollarSign' },
 ];
 
 export const PROJECT_STATUSES = {

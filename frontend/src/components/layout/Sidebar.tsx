@@ -75,6 +75,11 @@ export function Sidebar() {
       href: currentProjectId ? `/projects/${currentProjectId}?tab=costs` : '/projects', 
       icon: DollarSign 
     },
+    { 
+      name: 'Settings', 
+      href: '/settings', 
+      icon: Settings 
+    },
   ];
 
   return (
