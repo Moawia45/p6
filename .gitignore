@@ -36,3 +36,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# data files & generated reports
+*.xlsx
+*.xls
+*.xer
+generate_professional_excels.py
